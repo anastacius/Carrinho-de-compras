@@ -20,6 +20,10 @@ cartService.deleteItem(carrinho, 'Maçã');
 
 await printCart(carrinho);
 
+await cartService.removeItems(carrinho, 1);
+
+
+await printCart(carrinho);
 
 async function printCart(cart) {
     console.log('\nCarrinho de Compras:');

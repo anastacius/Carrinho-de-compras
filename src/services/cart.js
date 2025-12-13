@@ -10,11 +10,15 @@ async function calculateTotal(userCart) {
 
 
 
-async function removeItems(userCart, index) {
-
+async function deleteItemByIndex(userCart, index) {
+    const deleteIndex = index - 1;  
+    if (index >= 0 && index < userCart.length) {
+        userCart.splice(index, 1);
+    }
+    return userCart;
 }
 
-async function deleteItem(userCart, name) {
+async function deleteItemByName(userCart, name) {
    const index = userCart.findIndex(item => item.name === name);
    if (index !== -1) {
        userCart.splice(index, 1);
@@ -23,4 +27,18 @@ async function deleteItem(userCart, name) {
 
 }
 
-export { addItems, removeItems, deleteItem, calculateTotal };
+async function removeItems(userCart, index) {
+    const deleteIndex = index - 1;  
+    if (index >= 0 && index < userCart.length) {
+        userCart[deleteIndex].quantity -= 1;
+        if (userCart[deleteIndex].quantity === 0) {
+            userCart.splice(deleteIndex, 1);
+        }   
+    }
+    return userCart;
+
+}
+
+
+
+export { addItems, deleteItemByName, deleteItemByIndex, calculateTotal, removeItems };
